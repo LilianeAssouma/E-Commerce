@@ -1,6 +1,6 @@
 import express from "express";
 import { addToWishlist, createProduct, deleteProduct, getAllProduct, rating, updateProduct, updateProductRating, viewOneProduct } from "../controller/productCrtl";
-import { isAdmin, uploaded, verifyToken } from "../middleWare";
+import { authenticateUser,isAdmin, uploaded, verifyToken } from "../middleWare";
 
 const ProductRouter = express.Router();
 
@@ -11,6 +11,8 @@ ProductRouter.post("/create",uploaded,verifyToken,isAdmin, createProduct);
  *   post:
  *     summary: Create a new product
  *     tags: [Products]
+ *     security:
+ *         - BearerAuth: []
  *     requestBody:
  *       content:
  *         multipart/form-data:
@@ -55,6 +57,8 @@ ProductRouter.put("/updateProduct/:id",uploaded,verifyToken,isAdmin, updateProdu
  *     summary: Update a product
  *     tags:
  *       - Products
+ *     security:
+ *         - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -163,6 +167,8 @@ ProductRouter.get("/viewAllProd",getAllProduct);
  *     delete:
  *       summary: Delete a product by ID
  *       tags: [Products]
+ *       security:
+ *         - BearerAuth: []
  *       parameters:
  *         - in: path
  *           name: id

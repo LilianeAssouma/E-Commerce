@@ -6,12 +6,12 @@ import {
     newCategory, 
     updateCategory,
  } from "../controller/prodCategoryCrtl";
- 
-import { uploaded } from "../middleWare";
+ import { verifyToken } from "../middleWare";
+import { isAdmin, uploaded } from "../middleWare";
 
 const prodCategoryRouter = express.Router();
 
-prodCategoryRouter.post('/create', uploaded, newCategory);
+prodCategoryRouter.post('/create', uploaded,verifyToken, isAdmin, newCategory);
 
 /**
  * @swagger
@@ -38,7 +38,7 @@ prodCategoryRouter.post('/create', uploaded, newCategory);
  *         description: Internal server error.
  */
 
-prodCategoryRouter.put("/update/:id",uploaded, updateCategory);
+prodCategoryRouter.put("/update/:id",uploaded,verifyToken, isAdmin, updateCategory);
 /**
  * @swagger
  * 
@@ -68,7 +68,7 @@ prodCategoryRouter.put("/update/:id",uploaded, updateCategory);
  */
 
 
-prodCategoryRouter.delete("/delete/:id",deleteCategory);
+prodCategoryRouter.delete("/delete/:id",verifyToken, isAdmin,deleteCategory);
 
 /**
  * @swagger
@@ -91,7 +91,7 @@ prodCategoryRouter.delete("/delete/:id",deleteCategory);
  *         description: Internal server error.
  */
 
-prodCategoryRouter.get("/viewAll",getAllCategory);
+prodCategoryRouter.get("/viewAll",verifyToken,isAdmin,getAllCategory);
 /**
  * @swagger
  * /category/viewAll:
@@ -117,7 +117,7 @@ prodCategoryRouter.get("/viewAll",getAllCategory);
  *         description: Internal server error.
  */
 
-prodCategoryRouter.get("/viewOne/:id",getOneCategory);
+prodCategoryRouter.get("/viewOne/:id",verifyToken,isAdmin,getOneCategory);
 
 /**
  * @swagger

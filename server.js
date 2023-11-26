@@ -33,7 +33,8 @@ const options = {
       {
         url: "http://localhost:3005/api/v1",
       },
-      
+
+      {url: "https://e-commerce-sdvo.onrender.com/api/v1"},
     ],
   },
   apis: ["./src/routes/*.js"],
@@ -45,7 +46,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
   console.log("connected");
 });
-app.get("/api/v1",(req,res)=> res.send("hello there"))
+
 app.listen(port, () => {
   console.log(`server is running on http://localhost:${port}`);
 });
