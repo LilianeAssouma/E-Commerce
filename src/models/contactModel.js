@@ -1,5 +1,5 @@
 import mongoose from "mongoose"; 
-const enqSchema = new mongoose.Schema({
+const contactSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -22,4 +22,4 @@ const enqSchema = new mongoose.Schema({
     enum: ["Submitted", "Contacted", "In Progress", "Resolved"],
   },
 });
-export const Enq = mongoose.model("enquires", enqSchema);
+export const Contact = mongoose.model("contact", contactSchema);

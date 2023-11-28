@@ -1,8 +1,8 @@
-import { Enq } from "../models/enqModel";
+import { Contact } from "../models/enqModel";
 
-export const createEnquiry = async(req,res) =>{
+export const createContact = async(req,res) =>{
 try {
-    const newEnq =await Enq.create(req.body);
+    const newEnq =await Contact.create(req.body);
     res.status(200).json(newEnq);
 
 } catch (error) {
@@ -11,10 +11,10 @@ try {
 }
 }
 
-export const updateEnquiry = async(req,res) =>{
+export const updateContact = async(req,res) =>{
     const {id} = req.params;
 try {
-   const updatedEnquiry = await Enq.findByIdAndUpdate(id, req.body,{new: true,});
+   const updatedEnquiry = await Contact.findByIdAndUpdate(id, req.body,{new: true,});
    rres.status(200).json(updatedEnquiry) 
 } catch (error) {
     console.error(error);
@@ -22,10 +22,10 @@ try {
 }
 }
 
-export const getAllEnquiry = async(req,res) =>{
+export const getAllContact = async(req,res) =>{
     
 try {
-   const viewAllEnquiry = await Enq.find();
+   const viewAllEnquiry = await Contact.find();
    res.status(200).json(viewAllEnquiry) 
 } catch (error) {
     console.error(error);
@@ -33,10 +33,10 @@ try {
 }
 }
 
-export const getEnquiry = async(req,res) =>{
+export const getContact = async(req,res) =>{
     const {id} = req.params;
 try {
-   const viewEnquiry = await Enq.findById(id, req.body,{new: true,});
+   const viewEnquiry = await Contact.findById(id, req.body,{new: true,});
    res.status(200).json(viewEnquiry) 
 } catch (error) {
     console.error(error);
@@ -45,10 +45,10 @@ try {
 }
 
 
-export const deleteEnquiry = async(req,res) =>{
+export const deleteContact = async(req,res) =>{
     const {id} = req.params;
 try {
-   const deletedEnquiry = await Enq.findByIdAndDelete(id, req.body,{new: true,});
+   const deletedEnquiry = await Contact.findByIdAndDelete(id, req.body,{new: true,});
    res.status(200).json(deletedEnquiry) 
 } catch (error) {
     console.error(error);

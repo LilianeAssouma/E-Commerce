@@ -4,6 +4,8 @@ import { verifyToken } from "./verifyToken";
 
 
 
+
+
 // Middleware to authenticate the user
 export const authenticateUser = async (req, res, next) => {
   const token = req.header("Authorization");
@@ -49,3 +51,5 @@ export const isAdmin = async (req, res, next) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+

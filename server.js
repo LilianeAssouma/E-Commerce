@@ -7,15 +7,14 @@ import swaggerJSDoc from "swagger-jsdoc";
 
 import mainRouter from "./src/routes";
 import "dotenv/config";
-import ProductRouter from "./src/routes/productRouter";
 
-const port = 3005;
+const port = 4000;
 const app = express();
 app.use(bodyParser.json());
 
 app.use(cors());
 app.use("/api/v1", mainRouter);
-app.use("/product", ProductRouter);
+
 // Swagger
 const options = {
   definition: {
@@ -30,18 +29,19 @@ const options = {
       },
     },
     servers: [
-      {
-        url: "http://localhost:3005/api/v1",
-      },
+      { url: "http://localhost:4000/api/v1"},
 
-      {url: "https://e-commerce-sdvo.onrender.com/api/v1"},
+      { url: "https://e-commerce-sdvo.onrender.com/api/v1"},
     ],
   },
   apis: ["./src/routes/*.js"],
 };
 
 const specs = swaggerJSDoc(options);
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+app.use("/api-docs",
+ swaggerUI.serve, 
+ swaggerUI.setup(specs)
+ );
 
 mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
   console.log("connected");
